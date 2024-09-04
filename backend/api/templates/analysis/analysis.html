@@ -7,33 +7,42 @@
     <title>Semiotic Analysis Visualization</title>
     <style>
         #chart {
-            width: 600px;
+            width: 800px;
             height: 600px;
         }
         svg {
             font-family: Arial, sans-serif;
         }
     </style>
+    <!-- Load D3.js for visualization -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <h1>Semiotic Analysis Visualization</h1>
     <div id="chart"></div>
 
-    <!-- Add this script before the external JS file -->
+    <!-- Passing Django context variables to JavaScript for use in visualization -->
     <script>
-        const data = {
-            terms: {
-                opposition1_term1: "{{ opposition1_term1 }}",
-                opposition1_term2: "{{ opposition1_term2 }}",
-                opposition2_term1: "{{ opposition2_term1 }}",
-                opposition2_term2: "{{ opposition2_term2 }}",
-                neutral_term: "{{ neutral_term }}"
-            }
-        };
+        // Data passed from the Django context (use JSON script to safely handle Django variables)
+        const opposition1_term1 = "{{ opposition1_term1|escapejs }}";
+        const opposition1_term2 = "{{ opposition1_term2|escapejs }}";
+        const opposition2_term1 = "{{ opposition2_term1|escapejs }}";
+        const opposition2_term2 = "{{ opposition2_term2|escapejs }}";
+        const neutral_term = "{{ neutral_term|escapejs }}";
+
+        // Make an asynchronous request to the backend for NLP data
+        fetch("/process_text/1/")
+            .then(response => response.json())
+            .then(data => {
+                const nlpData = data.nlp_data;
+
+                // Call the visualization function from analysis.js and pass the NLP data
+                visualize(nlpData);
+            })
+            .catch(error => console.error('Error fetching NLP data:', error));
     </script>
 
-    <!-- This script loads your external JS file where the visualization is rendered -->
+    <!-- External JS script for handling visualization (analysis.js) -->
     <script src="{% static 'js/analysis.js' %}"></script>
 </body>
 </html>

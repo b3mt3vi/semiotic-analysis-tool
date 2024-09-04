@@ -1,13 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import TextViewSet, SemioticSquareViewSet, analysis_view
+from . import views
 
-# Create a router and register our viewsets with it.
+# Define the router for API viewsets
 router = DefaultRouter()
-router.register(r'texts', TextViewSet, basename='text')
-router.register(r'squares', SemioticSquareViewSet, basename='semioticsquare')
+router.register(r'texts', views.TextViewSet, basename='text')
+router.register(r'squares', views.SemioticSquareViewSet, basename='semioticsquare')
 
 urlpatterns = [
-    path('', include(router.urls)),  # API URLs for viewsets
-    path('analysis/', analysis_view, name='analysis_view'),  # Static view for template
-]
+    path('', include(router.urls)),  # Include all viewset routes
+    path('process_text/<int:text_id>/', views.process_text, name='process_text'),  # Process text view
+]   

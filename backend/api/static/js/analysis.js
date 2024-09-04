@@ -18,41 +18,52 @@ document.addEventListener("DOMContentLoaded", function() {
         opposition2_term2: [4 * width / 5, 4 * height / 5],  // Bottom-right
         neutral_term: [width / 2, height / 2]  // Center
     };
-    
 
-    // Draw the square
-    svg.append("rect")
-        .attr("x", 0)
-        .attr("y", 0)
-        .attr("width", width - margin.left - margin.right)
-        .attr("height", height - margin.top - margin.bottom)
-        .style("fill", "none")
-        .style("stroke", "black");
-    svg.append("line")
-        .attr("x1", positions.opposition1_term1[0])
-        .attr("y1", positions.opposition1_term1[1])
-        .attr("x2", positions.opposition2_term2[0])
-        .attr("y2", positions.opposition2_term2[1])
-        .style("stroke", "black")
-        .style("stroke-width", 2);
-    
-    svg.append("line")
-        .attr("x1", positions.opposition1_term2[0])
-        .attr("y1", positions.opposition1_term2[1])
-        .attr("x2", positions.opposition2_term1[0])
-        .attr("y2", positions.opposition2_term1[1])
-        .style("stroke", "black")
-        .style("stroke-width", 2);
-    
+    // Access the NLP data (tokens, pos_tags, dependencies) passed from Django
+    const terms = {
+        opposition1_term1: opposition1_term1,
+        opposition1_term2: opposition1_term2,
+        opposition2_term1: opposition2_term1,
+        opposition2_term2: opposition2_term2,
+        neutral_term: neutral_term
+    };
 
+    // Display terms on the semiotic square
     Object.keys(positions).forEach(term => {
         svg.append("text")
             .attr("x", positions[term][0])
             .attr("y", positions[term][1])
             .attr("text-anchor", "middle")
             .attr("dominant-baseline", "middle")
-            .text(data.terms[term])
+            .text(terms[term])  // Display terms dynamically
             .style("font-size", "14px")
             .style("fill", "black");
+    });
+
+    // Optionally display POS tags with terms
+    Object.keys(positions).forEach((term, index) => {
+        svg.append("text")
+            .attr("x", positions[term][0])
+            .attr("y", positions[term][1] + 20)
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "middle")
+            .text(data.nlp_data.pos_tags[index][1])  // Display the POS tag below the term
+            .style("font-size", "10px")
+            .style("fill", "gray");
+    });
+
+    // Draw dependency lines (optional)
+    data.nlp_data.dependencies.forEach(dep => {
+        const fromTerm = dep[0];  // The word
+        const toTerm = dep[2];  // The head word
+
+        svg.append("line")
+            .attr("x1", positions[fromTerm][0])
+            .attr("y1", positions[fromTerm][1])
+            .attr("x2", positions[toTerm][0])
+            .attr("y2", positions[toTerm][1])
+            .style("stroke", "blue")
+            .style("stroke-width", 2)
+            .style("marker-end", "url(#arrow)");  // Add arrow markers for dependencies
     });
 });
