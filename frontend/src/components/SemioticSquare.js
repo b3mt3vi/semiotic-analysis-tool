@@ -9,9 +9,8 @@ function SemioticSquare({ data }) {
       .attr('width', 500)
       .attr('height', 500);
     
-    svg.selectAll('*').remove();  // Clear previous squares
-    
-    // Add semiotic square rectangles and text
+    svg.selectAll('*').remove();
+
     svg.append('rect')
       .attr('x', 100)
       .attr('y', 100)
@@ -19,12 +18,24 @@ function SemioticSquare({ data }) {
       .attr('height', 300)
       .style('fill', 'none')
       .style('stroke', 'black');
-    
-    svg.append('text').attr('x', 120).attr('y', 120).text(data.opposition1_term1);
-    svg.append('text').attr('x', 360).attr('y', 120).text(data.opposition1_term2);
-    svg.append('text').attr('x', 120).attr('y', 360).text(data.opposition2_term1);
-    svg.append('text').attr('x', 360).attr('y', 360).text(data.opposition2_term2);
-    svg.append('text').attr('x', 240).attr('y', 240).text(data.neutral_term);
+
+    const terms = [
+      { text: data.opposition1_term1, x: 120, y: 120 },
+      { text: data.opposition1_term2, x: 360, y: 120 },
+      { text: data.opposition2_term1, x: 120, y: 360 },
+      { text: data.opposition2_term2, x: 360, y: 360 },
+      { text: data.neutral_term, x: 240, y: 240 }
+    ];
+
+    svg.selectAll('text')
+      .data(terms)
+      .enter()
+      .append('text')
+      .attr('x', d => d.x)
+      .attr('y', d => d.y)
+      .text(d => d.text)
+      .style('font-size', '14px')
+      .style('fill', 'black');
     
   }, [data]);
 

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.shortcuts import get_list_or_404, render
+from django.shortcuts import get_list_or_404,get_object_or_404, render
 from .models import Text, SemioticSquare
 from .serializers import TextSerializer, SemioticSquareSerializer
 import spacy
@@ -98,12 +98,30 @@ def analysis_view(request, index):
         return render(request, '404.html')  # Handle invalid index
 
     square = squares[index]  # Fetch the square by index
+    
+    # Fetch the corresponding text (adjust if there's a direct relation)
+    text_instance = get_object_or_404(Text, id=square.text_id)
+    content = text_instance.content
+    
+    # Process text with SpaCy
+    doc = nlp(content)
+    tokens = [token.text for token in doc]
+    entities = [(ent.text, ent.label_) for ent in doc.ents]
+    pos_tags = [(token.text, token.pos_) for token in doc]
+    dependencies = [(token.text, token.dep_, token.head.text) for token in doc]
+
     context = {
         "opposition1_term1": square.opposition1_term1,
         "opposition1_term2": square.opposition1_term2,
         "opposition2_term1": square.opposition2_term1,
         "opposition2_term2": square.opposition2_term2,
-        "neutral_term": square.neutral_term
+        "neutral_term": square.neutral_term,
+        "nlp_data": {
+            "tokens": tokens,
+            "entities": entities,
+            "pos_tags": pos_tags,
+            "dependencies": dependencies
+        }
     }
 
     return render(request, 'analysis/analysis.html', context)
