@@ -7,14 +7,13 @@ class Text(models.Model):
     def __str__(self):
         return self.title
 
+
 class SemioticSquare(models.Model):
-    text = models.ForeignKey(Text, on_delete=models.CASCADE, related_name='semiotic_squares')
-    opposition_1 = models.CharField(max_length=255)
-    opposition_2 = models.CharField(max_length=255)
-    neutral_term = models.CharField(max_length=255, blank=True, null=True)
-    contradictory_term = models.CharField(max_length=255, blank=True, null=True)
+    opposition1_term1 = models.CharField(max_length=255, default='text')
+    opposition1_term2 = models.CharField(max_length=255, default='text')
+    opposition2_term1 = models.CharField(max_length=255, default='text')
+    opposition2_term2 = models.CharField(max_length=255, default='text')
+    neutral_term = models.CharField(max_length=255, default='text')
 
     def __str__(self):
-        return f'{self.opposition_1} vs {self.opposition_2}'
-
-# Create your models here.
+        return f'{self.opposition1_term1} vs {self.opposition1_term2}'
