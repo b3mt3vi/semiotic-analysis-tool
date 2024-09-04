@@ -148,6 +148,10 @@
   },
   "active": "bfcd923cb71c1397",
   "lastOpenFiles": [
+    "frontend/src/App.js~",
+    "frontend/src/components/SemioticSquareForm.js",
+    "frontend/src/components/TextForm.js",
+    "backend/api/views.py~",
     "featurelist.md"
   ]
 }
