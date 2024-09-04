@@ -3,5 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),  # Include the API app URLs
+    path('', include('api.urls')),  # Direct the root URL to the 'api' app's URLs
 ]

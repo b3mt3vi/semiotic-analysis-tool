@@ -6,7 +6,6 @@ class TextSerializer(serializers.ModelSerializer):
         model = Text
         fields = ['title', 'content']
 
-
 class SemioticSquareSerializer(serializers.ModelSerializer):
     class Meta:
         model = SemioticSquare

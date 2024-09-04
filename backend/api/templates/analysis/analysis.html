@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semiotic Analysis Visualization</title>
+    <style>
+        #chart {
+            width: 600px;
+            height: 600px;
+        }
+        svg {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>Semiotic Analysis Visualization</h1>
+    <div id="chart"></div>
+
+    <!-- Add this script before the external JS file -->
+    <script>
+        const data = {
+            terms: {
+                opposition1_term1: "{{ opposition1_term1 }}",
+                opposition1_term2: "{{ opposition1_term2 }}",
+                opposition2_term1: "{{ opposition2_term1 }}",
+                opposition2_term2: "{{ opposition2_term2 }}",
+                neutral_term: "{{ neutral_term }}"
+            }
+        };
+    </script>
+
+    <!-- This script loads your external JS file where the visualization is rendered -->
+    <script src="{% static 'js/analysis.js' %}"></script>
+</body>
+</html>

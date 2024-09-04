@@ -42,7 +42,7 @@ ROOT_URLCONF = 'semiotic_analysis.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,6 +55,7 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'api/static')]
 WSGI_APPLICATION = 'semiotic_analysis.wsgi.application'
 
 # Database
