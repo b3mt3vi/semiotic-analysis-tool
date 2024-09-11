@@ -13,13 +13,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "featurelist.md",
+                "file": "Research/Bibliography.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d5aa8fc3003f958d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Research/Bibliography.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "19bb97667f6bfe9d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "forcdnr.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -85,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "featurelist.md",
+                "file": "forcdnr.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "featurelist.md",
+                "file": "forcdnr.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "featurelist.md"
+                "file": "forcdnr.md"
               }
             }
           }
@@ -146,12 +171,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bfcd923cb71c1397",
+  "active": "19bb97667f6bfe9d",
   "lastOpenFiles": [
+    "Untitled.md",
+    "forcdnr.md",
+    "Research/Bibliography.md",
+    "Untitled",
+    "Research/Semiotics_in_Computation_and_Information.pdf",
+    "Research/proceedings_cosign_2004.pdf",
+    "tutoring.md",
+    "lispector-cixous-joyce-rosa",
+    "featurelist.md",
+    "Research",
     "frontend/src/App.js~",
     "frontend/src/components/SemioticSquareForm.js",
     "frontend/src/components/TextForm.js",
-    "backend/api/views.py~",
-    "featurelist.md"
+    "backend/api/views.py~"
   ]
 }

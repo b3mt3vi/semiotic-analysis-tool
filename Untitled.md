@@ -1,0 +1,11 @@
+I have a number of projects I'm currently working on that I'm always looking for collaborators with. If any of these sound interesting to you please reach out.
+
+I'm currently working on a short film that I'd like to have finished before we leave for Brazil sometime next year. It's an existential mystery about a real estate arson conspiracy. The script and a large amount of the pre-production is complete but it's been delayed due to funding issues but when that's sorted out, I'll be looking for all kinds of cast and crew roles. I'm the producer, director, editor and DoP, although I'd be happy for someone to take over DoP duties if we collaborate well.
+
+I also play several instruments and I'm familiar with music production. Currently working on a set of songs. I bring a lot of jazz-lounge singer-songwriter elements to my music. My recent exploration of MPB, both listening and playing, has replaced my default rhythms with samba ones, for the better I think haha, and I've been building on that as well, using brazillian percussion sample sets as the percussive bass to my songs. Some of my major influences include Scott Walker, Destroyer, Angel Olsen, Leonard Cohen, Ellis Regina, Sibylle Baier. This is what I bring to the table but I'd love to collaborate with people who play in any style, really.
+
+
+In the realm of tech, literature and linguistics, I'm building software for the semiotic analysis of texts. It uses NLP and of course LLMs to build and plot semoitic connections based on the corpus and scope given. You can also manipulate the signs in real-time on the graphs (just greimas squares for now). This is going to be the basis of a computational linguistics research project that I'm going to take to Brazil and possibly continue to develop in a post-grad study there, where the focus is going to be on a comparative analysis between several authors, primarily Clarice Lispector, Helene Cixous, James Joyce and João Guimarães Rosa
+
+
+Also, since this server leans so heavily Brazillian, I wanted to ask if anyone might know people in or around Sao Paulo who might be interested in chatting and possibly collaborating on music and/or filmmaking when we move there next year!

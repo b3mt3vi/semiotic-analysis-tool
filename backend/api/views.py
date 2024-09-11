@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_list_or_404,get_object_or_404, render
@@ -49,7 +49,18 @@ class TextViewSet(viewsets.ModelViewSet):
             return Response(response_data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    def list(self, request, *args, **kwargs):
+        texts = Text.objects.all()
+        serializer = TextSerializer(texts, many=True)
+        return Response(serializer.data)
+    
+    def destroy(self, request, pk=None, *args, **kwargs):
+        try:
+            text = Text.objects.get(pk=pk)
+            text.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Text.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class SemioticSquareViewSet(viewsets.ModelViewSet):
     queryset = SemioticSquare.objects.all()
