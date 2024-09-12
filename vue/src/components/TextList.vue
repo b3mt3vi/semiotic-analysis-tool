@@ -1,27 +1,29 @@
+<!-- TextList.vue -->
 <template>
-    <div>
-      <h1>Texts</h1>
-      <ul>
-        <li v-for="text in texts" :key="text.id">{{ text.title }} - {{ text.content }}</li>
-      </ul>
-    </div>
-  </template>
-  
-  <script>
-  import api from '../services/api';
-  
-  export default {
-    data() {
-      return {
-        texts: []
-      };
-    },
-    mounted() {
-      api.getTexts().then(response => {
-        this.texts = response.data;
-      }).catch(error => {
-        console.error("Error fetching texts:", error);
-      });
-    }
+  <div>
+    <h1>Texts</h1>
+    <ul v-if="texts && texts.length > 0">
+      <li v-for="text in texts" :key="text.id">
+        <strong>{{ text.title }}</strong>: {{ truncatedText(text.content) }}
+      </li>
+    </ul>
+    <p v-else>No texts available.</p>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
+// Define props
+const props = defineProps({
+  texts: {
+    type: Array,
+    required: true
   }
-  </script>  
+});
+
+// Function to truncate text content
+const truncatedText = (content: string, maxLength: number = 100) => {
+  return content.length > maxLength ? content.slice(0, maxLength) + '...' : content;
+};
+</script>

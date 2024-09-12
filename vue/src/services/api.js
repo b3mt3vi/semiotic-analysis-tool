@@ -1,3 +1,4 @@
+// services/api.js
 import axios from 'axios';
 
 const apiClient = axios.create({
@@ -15,6 +16,6 @@ export default {
     return apiClient.post('texts/', newText);
   },
   deleteText(id) {
-    return apiClient.delete(`texts/${id}`);
+    return apiClient.delete(`texts/${id}/`);
   }
 };

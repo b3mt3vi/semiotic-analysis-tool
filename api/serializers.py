@@ -1,10 +1,13 @@
+# serializers.py
 from rest_framework import serializers
 from .models import Text, SemioticSquare
 
 class TextSerializer(serializers.ModelSerializer):
+    truncated_content = serializers.SerializerMethodField()
+
     class Meta:
         model = Text
-        fields = ['id', 'title', 'content']
+        fields = ['id', 'title', 'truncated_content']
 
 
 class SemioticSquareSerializer(serializers.ModelSerializer):

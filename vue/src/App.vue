@@ -1,10 +1,4 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import NewTextForm from './components/NewTextForm.vue';
-import TextList from './components/TextList.vue';
-</script>
-
+<!-- App.vue -->
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
@@ -17,14 +11,49 @@ import TextList from './components/TextList.vue';
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
+
     <main>
-      <NewTextForm />
-      <TextList />
+      <NewTextForm @text-added="addText" />
+      <TextList :texts="texts" />
     </main>
   </header>
 
   <RouterView />
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
+import NewTextForm from './components/NewTextForm.vue';
+import TextList from './components/TextList.vue';
+import api from './services/api';
+
+const texts = ref([]);
+
+const fetchTexts = async () => {
+  try {
+    const response = await api.getTexts();
+    console.log('Fetched texts:', response.data);
+    texts.value = response.data;
+  } catch (error) {
+    console.error('Error fetching texts:', error);
+  }
+};
+
+const addText = async (newText) => {
+  try {
+    await api.addText(newText);
+    fetchTexts(); // Refresh the list after adding
+  } catch (error) {
+    console.error('Error adding text:', error);
+  }
+};
+
+onMounted(() => {
+  fetchTexts();
+});
+</script>
+
 
 <style scoped>
 header {

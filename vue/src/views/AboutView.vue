@@ -28,7 +28,7 @@
       </p>
     </section>
     <footer>
-      <p>&copy; 2024 Semiotic Analysis Tool. All rights reserved.</p>
+      <p>semiotics by M. Oki Orlando from <a href="https://thenounproject.com/browse/icons/term/semiotics/" target="_blank" title="semiotics Icons">Noun Project</a> (CC BY 3.0)</p>
     </footer>
   </div>
 </template>
